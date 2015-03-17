@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/volkadserver/volkadserver-traffic-api/issues"
   },
-  "homepage": "https://github.com/volkadserver/volkadserver-traffic-api"
+  "homepage": "https://github.com/volkadserver/volkadserver-traffic-api",
+  "dependencies": {
+    "koa": "^0.18.1",
+    "koa-router": "^4.2.0",
+    "mysql": "^2.5.5",
+    "sequelize": "^2.0.4"
+  }
 }
