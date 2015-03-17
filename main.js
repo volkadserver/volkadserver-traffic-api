@@ -1,7 +1,7 @@
 var koa = require('koa');
 var app = koa();
 var router = require('./router');
-var Sequelize = require('sequelize');
+var db = require('./db');
 
 app
   .use(router.routes())
