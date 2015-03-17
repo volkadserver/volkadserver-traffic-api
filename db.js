@@ -2,33 +2,37 @@ var S = require('sequelize');
 
 var db = new S('volk', 'volk', 'password');
 
-var User = db.define('user', {
-    firstName: { type: S.STRING },
-    lastName: { type: S.STRING }
-  }
-);
+obj = {
+  db: db,
 
-var Flight = db.define('flight', { 
-  flightName: S.STRING,
-  startDate: S.DATE,
-  endDate: S.DATE
-});
+  User: db.define('user', {
+      firstName: { type: S.STRING },
+      lastName: { type: S.STRING }
+    }),
 
-var Campaign = db.define('campaign', { 
-  campaignName: S.STRING,
-  startDate: S.DATE,
-  endDate: S.DATE
-});
+  Flight: db.define('flight', { 
+      flightName: S.STRING,
+      startDate: S.DATE,
+      endDate: S.DATE
+    }),
 
-var Creative = db.define('creative', { 
-  creativeName: S.STRING,
-});
+  Order: db.define('order', { 
+      orderName: S.STRING,
+      startDate: S.DATE,
+      endDate: S.DATE
+    }),
 
-
-var Advertiser = db.define('advertiser', { 
-  advertiserName: S.STRING,
-}).sync({ force: true });
+  Creative: db.define('creative', { 
+    creativeName: S.STRING,
+  }),
 
 
+  Advertiser: db.define('advertiser', { 
+    advertiserName: S.STRING,
+  })//
+}
 
-module.exports = db;
+obj.Flight.belongsTo(obj.Order);
+obj.Order.hasMany(obj.Flight);
+
+module.exports = obj;
