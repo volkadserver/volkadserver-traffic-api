@@ -7,12 +7,12 @@ db.db.sync({ force: true });
 router.get('base', '/', function *(next) { this.body = 'API root'; });
 
 router.get('/api/:resource', function *(next) {
-  var singular = inflection.singularize(this.params.resource);
+  var singular = inflection.capitalize(inflection.singularize(this.params.resource));
   this.body = yield db[singular].findAll();
 });
 
 router.get('/api/:resource/:id', function *(next) {
-  var singular = inflection.singularize(this.params.resource);
+  var singular = inflection.capitalize(inflection.singularize(this.params.resource));
   this.body = yield db[singular].findOne(this.params.id);
 });
 
