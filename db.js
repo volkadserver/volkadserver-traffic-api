@@ -24,6 +24,7 @@ obj = {
 
   Creative: db.define('creative', { 
     creativeName: S.STRING,
+    creativeContent: S.STRING
   }),
 
 
@@ -34,5 +35,7 @@ obj = {
 
 obj.Flight.belongsTo(obj.Order);
 obj.Order.hasMany(obj.Flight);
+obj.Creative.belongsToMany(obj.Flight, { through: 'CreativeFlight' });
+obj.Flight.hasMany(obj.Creative);
 
 module.exports = obj;
