@@ -5,41 +5,41 @@ var db = new S('volk', 'volk', 'password');
 obj = {
   db: db,
 
-  User: db.define('user', {
+  User: db.define('User', {
       firstName: { type: S.STRING },
       lastName: { type: S.STRING }
     }),
 
-  Flight: db.define('flight', { 
+  Flight: db.define('Flight', { 
       flightName: S.STRING,
       startDate: S.DATE,
       endDate: S.DATE
     }),
 
-  Order: db.define('order', { 
+  Order: db.define('Order', { 
       orderName: S.STRING,
       startDate: S.DATE,
       endDate: S.DATE
     }),
 
-  Creative: db.define('creative', { 
+  Creative: db.define('Creative', { 
     creativeName: S.STRING,
     creativeContent: S.STRING
   }),
 
 
-  Advertiser: db.define('advertiser', { 
+  Advertiser: db.define('Advertiser', { 
     advertiserName: S.STRING,
   }),
 
-  FlightTargeting: db.define('flightTargeting', {
+  FlightTargeting: db.define('FlightTargeting', {
   }),
 
-  FlightTargetingValue: db.define('flightTargetingValue', {
+  FlightTargetingValue: db.define('FlightTargetingValue', {
     value: S.STRING
   }),
 
-  Targeting: db.define('targeting', {
+  Targeting: db.define('Targeting', {
     targetingName: S.STRING
   })
 }
