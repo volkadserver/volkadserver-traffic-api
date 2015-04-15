@@ -30,12 +30,27 @@ obj = {
 
   Advertiser: db.define('advertiser', { 
     advertiserName: S.STRING,
-  })//
+  }),
+
+  FlightTargeting: db.define('flightTargeting', {
+  }),
+
+  FlightTargetingValue: db.define('flightTargetingValue', {
+    value: S.STRING
+  }),
+
+  Targeting: db.define('targeting', {
+    targetingName: S.STRING
+  })
 }
 
 obj.Flight.belongsTo(obj.Order);
 obj.Order.hasMany(obj.Flight);
 obj.Creative.belongsToMany(obj.Flight, { through: 'CreativeFlight' });
 obj.Flight.hasMany(obj.Creative);
+obj.Flight.hasMany(obj.Targeting, { through: obj.FlightTargeting });
+obj.Targeting.belongsToMany(obj.Flight, { through: obj.FlightTargeting });
+obj.FlightTargeting.hasOne(obj.FlightTargetingValue);
+obj.FlightTargetingValue.belongsToMany(obj.FlightTargeting);
 
 module.exports = obj;
