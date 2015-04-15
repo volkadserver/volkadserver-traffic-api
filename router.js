@@ -7,8 +7,15 @@ db.db.sync({ force: true });
 router.get('base', '/', function *(next) { this.body = 'API root'; });
 
 router.get('/api/:resource', function *(next) {
+  var options = {};
+  var query = this.request.query;
+  if(query && query.getRelated) {
+    var relatedModel = inflection.capitalize(inflection.singularize(query.getRelated));
+    if(db[relatedModel]) options.include = db[relatedModel];
+    else { } // TODO: let the user know the model doesn't exist...
+  }
   var singular = inflection.capitalize(inflection.singularize(this.params.resource));
-  this.body = yield db[singular].findAll();
+  this.body = yield db[singular].findAll(options);
 });
 
 router.get('/api/:resource/:id', function *(next) {
